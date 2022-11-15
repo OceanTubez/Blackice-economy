@@ -1,14 +1,21 @@
--- Server Script
-local Prompt = script.Parent
-
+-- Local Script
 local ShowATMRE = game:GetService("ReplicatedStorage"):WaitForChild("GameStuff"):WaitForChild("Remote"):WaitForChild("ATMSystem")
 
-Prompt.Triggered:Connect(function(plr)
+ShowATMRE.OnClientEvent:Connect(function(prompt)
     
-   ShowATMRE:FireClient(plr)
-   
-   local ForceFLD = Instance.new("ForceField")
-   ForceFLD.Parent = plr.Character
-   
+    prompt.Enabled = false
+    script.Parent:WaitForChild("MainFrame").Visible = true
+        
+    script.Parent:WaitForChild("MainFrame").Changed:Connect(function()
+    
+        if script.Parent:WaitForChild("MainFrame").Visible = false then
+        
+            prompt.Enabled = true
+            ShowATMRE:FireServer()
+
+        end
+        
+    end)
         
 end)
+
