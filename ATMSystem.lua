@@ -12,3 +12,9 @@ Prompt.Triggered:Connect(function(plr)
    
         
 end)
+
+ShowATMRE.OnServerEvent:Connect(function(plr)
+
+    plr.Character:FindFirstChild("ForceField"):Destroy()
+
+end)
