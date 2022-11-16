@@ -5,6 +5,9 @@ local RespawnTime = Mainmodel:WaitForChild("RespawnDelay")
 local IsBroken = Mainmodel:WaitForChild("IsBroken")
 local FX = Mainmodel:WaitForChild("FX")
 
+local SPMPenguin = require(game:GetService("ReplicatedStorage"):WaitForChild("GameStuff"):WaitForChild("Modules"):WaitForChild("SPMPenguin"))
+local CashMesh = game:GetService("ReplicatedStorage"):WaitForChild("GameStuff"):WaitForChild("ATM"):WaitForChild("CashMesh")
+
 local TweenService = game:GetService("TweenService")
 
 local Tweeninfobruv = TweenInfo.new(
@@ -31,7 +34,15 @@ IsBroken.Changed:Connect(function()
         NewTween:Play()
         NewTween.Completed:Wait()
         
+        local spawningamount = math.random(2,6)
         
+        while spawningamount > 0 do
+
+            spawningamount -= 1
+            
+            SPMPenguin:SpawnItem(CashMesh, math.random(60, 200))
+
+        end
 
         while task.wait(RespawnTime.Value) then
 
