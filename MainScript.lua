@@ -50,10 +50,16 @@ LockpickRE.OnServerEvent:Connect(function(targetedpart)
 
     for i, safe in ipairs(safes) do
 
-        if targetedpart.Parent == safe then
+        if targetedpart.Parent == safe and tries > 0 then
 
             tries -= 1
             safe.Health -= 100
+
+            if tries <= 0 then
+            
+                tool:Destroy()
+
+            end
 
         end
 
